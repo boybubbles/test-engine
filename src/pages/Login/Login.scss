@@ -1,0 +1,19 @@
+.container {
+  margin: auto;
+  max-width: 1200px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    .name,
+    .email,
+    .first-name {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
