@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  data: [],
-};
+const initialState = {};
 const userReducer = createSlice({
   name: "userReducer",
   initialState,
-  reducers: {},
+  reducers: {
+    Begintest: (state, action) => (state = action.payload),
+  },
 });
 
-export const {} = userReducer.actions;
+export const { Begintest } = userReducer.actions;
 
 export default userReducer.reducer;

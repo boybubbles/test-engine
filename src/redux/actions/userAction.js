@@ -1,17 +1,13 @@
 import http from "../../database/mockApi";
+import { Begintest } from "../reducers/userReducer";
 
-export const loginAction = (params) => {
+export const BeginAction = (params) => {
   return async (dispatch) => {
     try {
-      const createTimestamp = () => {
-        params.candidate.time_start = new Date();
-        datejs
-        return { ...params };
-      };
-      const result = await http.post("/begintest", createTimestamp);
+      const result = await http.post("/begintest", params);
       console.log(params);
-      console.log(createTimestamp());
-      console.log(result);
+      localStorage.setItem("user_info", JSON.stringify(params));
+      dispatch(Begintest(result.data));
     } catch (errors) {
       console.log(errors);
     }

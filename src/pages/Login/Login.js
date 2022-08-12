@@ -1,10 +1,12 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { loginAction } from "../../redux/actions/userAction";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { BeginAction } from "../../redux/actions/userAction";
 import "./Login.scss";
 
 const Login = () => {
+  const history = useHistory();
+  const state = useSelector((rootReducer) => rootReducer.userReducer);
   const [userValue, setUserValue] = useState({
     global: {
       test_id: 1,
@@ -13,7 +15,7 @@ const Login = () => {
       randomize: true,
     },
     candidate: {
-      time_start: "Mo, 1961916",
+      time_start: Date.now(),
       firstname: "Sven",
       lastname: "Gusek",
       contact: "sven.gusek@dision.tech",
@@ -22,7 +24,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginAction(userValue));
+    dispatch(BeginAction(userValue));
   };
   const handleChange = ({ target }) => {
     let { value, name } = target;
@@ -32,7 +34,11 @@ const Login = () => {
     });
     console.log(userValue);
   };
-
+  useEffect(() => {
+    if (state?.success === true) {
+      history.push("/info");
+    }
+  }, [state?.success]);
   return (
     <div className="container">
       <h1>Wellcome!</h1>
