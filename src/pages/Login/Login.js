@@ -24,6 +24,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
+
     dispatch(BeginAction(userValue));
   };
   const handleChange = ({ target }) => {
@@ -34,6 +35,7 @@ const Login = () => {
     });
     console.log(userValue);
   };
+
   useEffect(() => {
     if (state?.success === true) {
       history.push("/info");
