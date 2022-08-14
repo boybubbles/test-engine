@@ -1,10 +1,9 @@
 import React from "react";
-import database from "../../database/database.json";
+import { useSelector } from "react-redux";
 const Thankyou = () => {
-  let { messages } = database;
-  const userData = JSON.parse(localStorage.getItem("user_info"));
-
-  console.log(userData);
+  const firstname = JSON.parse(localStorage.getItem("user_info")).candidate
+    .firstname;
+  const { testContent } = useSelector((rootReducer) => rootReducer.userReducer);
   //send data to server
 
   const handleChange = ({ target }) => {
@@ -12,13 +11,13 @@ const Thankyou = () => {
   };
   return (
     <div className="container">
-      <h1>Thankyou, {userData.candidate.firstname}</h1>
-      <h3>{messages.thankyou}</h3>
+      <h1>Thankyou, {firstname}</h1>
+      <h3>{testContent.messages.thankyou}</h3>
       <div>
         <textarea
           cols="30"
           rows="10"
-          placeholder={messages.feedback}
+          placeholder={testContent.messages.feedback}
           onChange={handleChange}
         ></textarea>
       </div>

@@ -1,15 +1,18 @@
-import http from "../../database/mockApi";
-import { Begintest } from "../reducers/userReducer";
+// import http from "../../database/mockApi";
+// import { Begintest } from "../reducers/userReducer";
+// export const BeginAction = (params) => {
+//   return async (dispatch) => {
+//     try {
+//       // define the test object
 
-export const BeginAction = (params) => {
-  return async (dispatch) => {
-    try {
-      const result = await http.post("/begintest", params);
-      console.log(params);
-      localStorage.setItem("user_info", JSON.stringify(params));
-      dispatch(Begintest(result.data));
-    } catch (errors) {
-      console.log(errors);
-    }
-  };
-};
+//       const result = await http.post(
+//         `/api/v1/?id=${params.global.test_id}`,
+//         params
+//       );
+
+//       dispatch(Begintest({ ...result.data, testContent: db[testIndex] }));
+//     } catch (errors) {
+//       console.log(errors);
+//     }
+//   };
+// };

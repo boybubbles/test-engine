@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-const CountDown = ({ RandomQuestions, index, setIndex }) => {
+const CountDown = ({ RandomQuestions, index, setIndex, onAnswer }) => {
   let [countdown, setCountDown] = useState(RandomQuestions[index].timeout);
   const history = useHistory();
   const onTimesUp = () => {
     if (index < RandomQuestions.length - 1) {
+      onAnswer();
       setIndex((prevState) => prevState + 1);
       setCountDown(RandomQuestions[index].timeout);
     }
   };
   const onOver = () => {
+    onAnswer();
     history.push("/thankyou");
   };
   useEffect(() => {
@@ -22,27 +24,29 @@ const CountDown = ({ RandomQuestions, index, setIndex }) => {
       };
     } else {
       if (index < RandomQuestions.length - 1) {
-        onOver();
-      } else {
         onTimesUp();
+      } else {
+        onOver();
       }
     }
   }, [countdown]);
   return (
     <div>
       <h1>{countdown}</h1>
-
       <button
         onClick={() => {
           if (index < RandomQuestions.length - 1) {
             setIndex((prevState) => prevState + 1);
             setCountDown(RandomQuestions[index].timeout);
+            onAnswer();
           } else {
             onOver();
           }
         }}
       >
-        Next
+        {index < RandomQuestions.length - 1
+          ? "Next"
+          : "It's over! Congratulation, Click to submit your test"}
       </button>
     </div>
   );

@@ -9,8 +9,21 @@ let http = axios.create({
 
 let mock = new MockAdapter(http);
 
-mock.onPost("/begintest").reply(200, {
+mock.onPost("/api/v1/?id=1").reply(200, {
   success: true,
   status: 200,
 });
+
 export default http;
+// [
+//   {
+//     answer: "bal bla",
+//     position: 1,
+//     result: true,
+//   },
+//   {
+//     answer: "Sven",
+//     position: 0,
+//     result: false,
+//   },
+// ]

@@ -1,29 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import database from "../../database/database.json";
 const Welcome = () => {
-  let { questions, messages } = database;
+  const dispatch = useDispatch();
+  const { testContent } = useSelector((rootReducer) => rootReducer.userReducer);
   const secondsToHms = (params) => {
     let sec = Number(params);
     let m = Math.floor((sec % 3600) / 60);
     let s = Math.floor((sec % 3600) % 60);
-    let mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
-    let sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+    let mDisplay = m > 0 ? m + (m === 1 ? " minute, " : " minutes, ") : "";
+    let sDisplay = s > 0 ? s + (s === 1 ? " second" : " seconds") : "";
     return mDisplay + sDisplay;
   };
   const history = useHistory();
+  useEffect(() => {}, []);
   return (
     <div className="container">
       <h1>Important Info</h1>
-      <h3>{messages.information}</h3>
+      <h3>{testContent.messages.information}</h3>
       <h4>
         You will have
         <div>
           {secondsToHms(
-            questions.reduce((total, item) => total + item.timeout, 0)
+            testContent.questions.reduce(
+              (total, item) => total + item.timeout,
+              0
+            )
           )}
         </div>
-        with {questions.length} questions
+        with {testContent.questions.length} questions
       </h4>
       <h4>Start your test now</h4>
       <button

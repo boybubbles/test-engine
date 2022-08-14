@@ -1,10 +1,10 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./QuizContainer.scss";
-import database from "../../database/database.json";
 import QuestionForm from "./QuestionForm";
+import { useSelector } from "react-redux";
 
 const QuizContainer = () => {
-  let { questions } = database;
+  const { testContent } = useSelector((rootReducer) => rootReducer.userReducer);
   const ramdomize = (array) => {
     let currentIndex = array.length;
     let randomIndex;
@@ -22,8 +22,9 @@ const QuizContainer = () => {
 
     return array;
   };
-  console.log("QuizContainer-render");
-  const RandomQuestions = ramdomize(questions);
+  const questionsArray = [...testContent.questions];
+
+  const RandomQuestions = ramdomize(questionsArray);
   return (
     <div className="container">
       <h1>Question</h1>
