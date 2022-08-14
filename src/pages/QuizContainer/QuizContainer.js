@@ -4,6 +4,7 @@ import QuestionForm from "./QuestionForm";
 import { useSelector } from "react-redux";
 
 const QuizContainer = () => {
+  console.log("--------------------------QuizContainer----------------------");
   const { testContent } = useSelector((rootReducer) => rootReducer.userReducer);
   const ramdomize = (array) => {
     let currentIndex = array.length;

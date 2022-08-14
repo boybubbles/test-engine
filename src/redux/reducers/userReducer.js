@@ -64,11 +64,12 @@ const userReducer = createSlice({
       state.testContent = database[index];
     },
     Answer: (state, action) => {
+      state.result.questions.push(action.payload);
+      console.log("dispatch success");
       // create a partern as the biven example
       // in the action we have:
       // - action.payload.AnswerHistory
 
-      
       // let { answers, id, timeout, question, multichoice, topic } =
       //   action.payload.question;
       // if (action.payload?.value) {
@@ -93,6 +94,6 @@ const userReducer = createSlice({
   },
 });
 
-export const { Begintest, Answe } = userReducer.actions;
+export const { Begintest, Answer } = userReducer.actions;
 
 export default userReducer.reducer;

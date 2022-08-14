@@ -6,14 +6,47 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 15px;
   .form-group {
+    width: 100%;
+    button {
+      margin-top: 15px;
+      padding: 15px 20px;
+      border: none;
+      background-color: darkorchid;
+      border-radius: 5px;
+      color: white;
+      transition: transform 0.3s ease;
+      font-size: 25px;
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+    }
     display: flex;
     flex-direction: column;
     .name,
     .email,
     .first-name {
       display: flex;
+      align-items: center;
       justify-content: space-between;
+      gap: 55px;
+      label {
+        font-size: 25px;
+      }
+      input {
+        width: 70%;
+        border-radius: 5px; 
+        line-height: 1.5;
+        padding: 15px 20px;
+        margin: 15px 0px;
+        border: none;
+        outline: none;
+        color: white;
+        font-size: 25px;
+        background-color: rgba($color: #000000, $alpha: 0.69);
+      }
     }
   }
 }

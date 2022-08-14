@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 const CountDown = ({ RandomQuestions, index, setIndex, onAnswer }) => {
   let [countdown, setCountDown] = useState(RandomQuestions[index].timeout);
+  console.log("RandomQuestions[index].timeout", RandomQuestions[index].timeout);
   const history = useHistory();
   const onTimesUp = () => {
     if (index < RandomQuestions.length - 1) {
@@ -11,7 +12,6 @@ const CountDown = ({ RandomQuestions, index, setIndex, onAnswer }) => {
     }
   };
   const onOver = () => {
-    onAnswer();
     history.push("/thankyou");
   };
   useEffect(() => {
