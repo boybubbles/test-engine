@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import "../Welcome/Welcome.scss";
 const Welcome = () => {
-  const dispatch = useDispatch();
   const { testContent } = useSelector((rootReducer) => rootReducer.userReducer);
   const secondsToHms = (params) => {
     let sec = Number(params);
@@ -13,14 +13,15 @@ const Welcome = () => {
     return mDisplay + sDisplay;
   };
   const history = useHistory();
+
   useEffect(() => {}, []);
   return (
     <div className="container">
       <h1>Important Info</h1>
       <h3>{testContent.messages.information}</h3>
-      <h4>
-        You will have
-        <div>
+      <div className="messages">
+        <div>You will have</div>
+        <div className="time">
           {secondsToHms(
             testContent.questions.reduce(
               (total, item) => total + item.timeout,
@@ -28,12 +29,12 @@ const Welcome = () => {
             )
           )}
         </div>
-        with {testContent.questions.length} questions
-      </h4>
+        <div>with {testContent.questions.length} questions</div>
+      </div>
       <h4>Start your test now</h4>
       <button
         onClick={() => {
-          history.push("/test");
+          history.push("/testing/");
         }}
       >
         Start

@@ -1,0 +1,26 @@
+.questionForm-container {
+  min-width: 70%;
+  .current-question {
+    margin-top: 50px;
+    margin-bottom: 0;
+  }
+  .countdown-container {
+    display: flex;
+    align-items: center;
+    .flex-growth {
+      flex: 1;
+    }
+    .countdown {
+      margin-left: 15px;
+    }
+  }
+  .answer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 25px;
+    input {
+      margin-left: 25px;
+    }
+  }
+}

@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-const CountDown = ({ RandomQuestions, index, setIndex, onAnswer }) => {
-  let [countdown, setCountDown] = useState(RandomQuestions[index].timeout);
-  console.log("RandomQuestions[index].timeout", RandomQuestions[index].timeout);
+const CountDown = ({ RandomQuestions, onAnswer }) => {
+  const { currentIndex } = useSelector(
+    (rootReducer) => rootReducer.userReducer
+  );
+  const [countdown, setCountDown] = useState(
+    RandomQuestions[currentIndex].timeout
+  );
   const history = useHistory();
   const onTimesUp = () => {
-    if (index < RandomQuestions.length - 1) {
+    if (currentIndex < RandomQuestions.length - 1) {
       onAnswer();
-      setIndex((prevState) => prevState + 1);
-      setCountDown(RandomQuestions[index].timeout);
+      setCountDown(RandomQuestions[currentIndex + 1].timeout);
     }
   };
   const onOver = () => {
+    
     history.push("/thankyou");
   };
   useEffect(() => {
@@ -23,28 +28,33 @@ const CountDown = ({ RandomQuestions, index, setIndex, onAnswer }) => {
         clearInterval(timerID);
       };
     } else {
-      if (index < RandomQuestions.length - 1) {
+      if (currentIndex < RandomQuestions.length - 1) {
         onTimesUp();
       } else {
         onOver();
       }
     }
+    console.log("CountDown prevIndex", currentIndex);
+    return () => {
+      console.log("----------CountDown prevIndex--------------", currentIndex);
+    };
   }, [countdown]);
   return (
-    <div>
-      <h1>{countdown}</h1>
+    <div className="countdown-container">
+      <h3>Time Left: </h3>
+      <h1 className="countdown">{countdown}</h1>
+      <div className="flex-growth"></div>
       <button
         onClick={() => {
-          if (index < RandomQuestions.length - 1) {
-            setIndex((prevState) => prevState + 1);
-            setCountDown(RandomQuestions[index].timeout);
+          if (currentIndex < RandomQuestions.length - 1) {
+            setCountDown(RandomQuestions[currentIndex].timeout);
             onAnswer();
           } else {
             onOver();
           }
         }}
       >
-        {index < RandomQuestions.length - 1
+        {currentIndex < RandomQuestions.length - 1
           ? "Next"
           : "It's over! Congratulation, Click to submit your test"}
       </button>

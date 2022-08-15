@@ -1,40 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./QuizContainer.scss";
 import QuestionForm from "./QuestionForm";
 import { useSelector } from "react-redux";
+import { Progress } from "antd";
 
 const QuizContainer = () => {
-  console.log("--------------------------QuizContainer----------------------");
-  const { testContent } = useSelector((rootReducer) => rootReducer.userReducer);
-  const ramdomize = (array) => {
-    let currentIndex = array.length;
-    let randomIndex;
-
-    while (currentIndex != 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      //swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
-    }
-
-    return array;
-  };
-  const questionsArray = [...testContent.questions];
-
-  const RandomQuestions = ramdomize(questionsArray);
+  const { testContent, currentIndex } = useSelector(
+    (rootReducer) => rootReducer.userReducer
+  );
   return (
-    <div className="container">
-      <h1>Question</h1>
-      <h1>
-        Time left
-        <div>
-          <QuestionForm RandomQuestions={RandomQuestions} />
+    <div className="QuizContainer">
+      <h1>{testContent.global.name}</h1>
+      <div className="QuizContainer-inner">
+        <div className="progress-bar">
+          <Progress
+            percent={(currentIndex * 100) / testContent.questions.length}
+            showInfo={false}
+            steps={testContent.questions.length}
+          />
         </div>
-      </h1>
+        <QuestionForm />
+      </div>
     </div>
   );
 };

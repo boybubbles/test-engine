@@ -1,15 +1,20 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./Login.scss";
 import database from "../../database/database.json";
 import axios from "../../database/mockApi";
 import { Begintest } from "../../redux/reducers/userReducer";
+import logo from "../../image/logo.jpg";
+import { validateInput } from "../../Validator/validator";
 const Login = () => {
-  console.log("login-render");
   const history = useHistory();
   const state = useSelector((rootReducer) => rootReducer.userReducer);
-
+  const [error, setError] = useState({
+    lastname: { isValidInput: true, errorMessage: "" },
+    firstname: { isValidInput: true, errorMessage: "" },
+    contact: { isValidInput: true, errorMessage: "" },
+  });
   const userValue = useRef({
     candidate: {
       time_start: 0,
@@ -22,54 +27,97 @@ const Login = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-
-      console.log("dispatchUserValue");
-      const result = await axios.post("/api/v1/?id=1", userValue);
-      dispatch(Begintest({ ...result.data, testData: userValue.current }));
+      if (
+        error.lastname.isValidInput &&
+        error.firstname.isValidInput &&
+        error.contact.isValidInput
+      ) {
+        const result = await axios.post("/api/v1/?id=1", userValue);
+        dispatch(Begintest({ ...result.data, testData: userValue.current }));
+      }
     } catch (error) {
       console.log(error);
     }
   };
-  console.log("userValue", userValue.current);
+
+  const handleValidInput = (checkingValue, type) => {
+    let { isValidInput, errorMessage } = validateInput(checkingValue, type);
+    setError({
+      ...error,
+      [type]: {
+        errorMessage: errorMessage,
+        isValidInput: isValidInput,
+      },
+    });
+  };
+  const handleBlur = ({ target }) => {
+    let { value, name } = target;
+    handleValidInput(value, name);
+  };
+
   const handleChange = ({ target }) => {
     let { value, name } = target;
     userValue.current.candidate[name] = value;
-
-    console.log(
-      "userValue.current out side useEffect",
-      userValue.current.candidate
-    );
   };
 
   useEffect(() => {
     if (state?.success === true) {
-      console.log("successDispatch");
       history.push("/info");
     } else {
       let randomTest =
         database[Math.floor(Math.random() * database.length)].global;
       userValue.current = { ...userValue.current, global: randomTest };
-      console.log("userValue.current", userValue.current);
     }
   }, [state?.success]);
   return (
     <div className="container">
       <h1>Wellcome!</h1>
       <p>Good luck with your test results! :v</p>
-      <h3>Dision tech</h3>
+      <img src={logo} alt="..." />
       <form onSubmit={handleSubmit} className="form-group">
         <div className="name">
           <label>Last Name</label>
-          <input name="lastname" onChange={handleChange} type="text" />
+          <input
+            autoComplete="off"
+            name="lastname"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="text"
+          />
         </div>
+
+        {error.lastname.errorMessage ? (
+          <span>{error.lastname.errorMessage}</span>
+        ) : null}
+
         <div className="first-name">
           <label>First Name</label>
-          <input name="firstname" onChange={handleChange} type="text" />
+          <input
+            autoComplete="off"
+            name="firstname"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="text"
+          />
         </div>
+
+        {error.firstname.errorMessage ? (
+          <span>{error.firstname.errorMessage} </span>
+        ) : null}
+
         <div className="email">
           <label>Email Address</label>
-          <input name="contact" onChange={handleChange} type="email" />
+          <input
+            autoComplete="off"
+            name="contact"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="email"
+          />
         </div>
+        {error.contact.errorMessage ? (
+          <span>{error.contact.errorMessage} </span>
+        ) : null}
         <button type="submit">Start the Test</button>
       </form>
     </div>

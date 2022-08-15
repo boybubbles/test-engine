@@ -7,6 +7,9 @@
   align-items: center;
   justify-content: center;
   gap: 15px;
+  h1 {
+    font-size: 50px;
+  }
   .form-group {
     width: 100%;
     button {
@@ -37,7 +40,7 @@
       }
       input {
         width: 70%;
-        border-radius: 5px; 
+        border-radius: 5px;
         line-height: 1.5;
         padding: 15px 20px;
         margin: 15px 0px;

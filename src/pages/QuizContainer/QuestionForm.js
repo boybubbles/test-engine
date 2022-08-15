@@ -1,30 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import CountDown from "../../component/CountDown";
 import { Answer } from "../../redux/reducers/userReducer";
+import { useSelector } from "react-redux";
 import "./QuestionForm.scss";
-const QuestionForm = ({ RandomQuestions }) => {
-  const [index, setIndex] = useState(0);
+
+const QuestionForm = () => {
+  const { testContent } = useSelector((rootReducer) => rootReducer.userReducer);
+
+  const { currentIndex } = useSelector(
+    (rootReducer) => rootReducer.userReducer
+  );
   const dispatch = useDispatch();
-  const { question, timeout, multichoice, topic, answers, id } =
-    RandomQuestions[index];
-  const instance = useRef({
-    id: id,
-    timeout: timeout, // timeout is seconds
-    question: question,
-    multichoice: false,
-    topic: topic,
-    answers: answers,
-    history: [],
-    results: answers.map((item, index) => ({
-      answer: item,
-      position: index,
-      result: false,
-    })),
-    completed: false, // has he chosen at least one
-  });
+  const instance = useRef();
   const updateHistoryAndValue = ({ target }) => {
-    /// create a partern when update question
     let { value } = target;
     if (value) {
       instance.current.completed = true;
@@ -37,56 +26,60 @@ const QuestionForm = ({ RandomQuestions }) => {
       pos: indexAnswer,
       timestamp: Date.now(),
     });
-    console.log(instance.current);
   };
   const onAnswer = async (e) => {
     dispatch(Answer(instance.current));
   };
   useEffect(() => {
     instance.current = {
-      id: id,
-      timeout: timeout, // timeout is seconds
-      question: question,
-      multichoice: false,
-      topic: topic,
-      answers: answers,
+      id: testContent.questions[currentIndex].id,
+      timeout: testContent.questions[currentIndex].timeout, // timeout is seconds
+      question: testContent.questions[currentIndex].question,
+      multichoice: testContent.questions[currentIndex].multichoice,
+      topic: testContent.questions[currentIndex].topic,
+      answers: testContent.questions[currentIndex].answers,
       history: [],
-      results: answers.map((item, index) => ({
-        answer: item,
-        position: index,
-        result: false,
-      })),
+      results: [
+        testContent.questions[currentIndex].answers.map((item, index) => ({
+          answer: item,
+          position: index,
+          result: false,
+        })),
+      ],
       completed: false, // has he chosen at least one
     };
-  }, [index]);
+    console.log("questionform currentIndex:", currentIndex);
+    return () => {
+      console.log("-------------questionform prevIndex:--------------", currentIndex);
+    };
+  }, [currentIndex]);
   return (
-    <>
-      <div>
-        <h1>
-          Câu hỏi hiện tại {index + 1}/{RandomQuestions.length}
-        </h1>
-        <p>current time out {timeout}</p>
-        <CountDown
-          RandomQuestions={RandomQuestions}
-          index={index}
-          setIndex={setIndex}
-          onAnswer={onAnswer}
-        />
-        <h1>{question}</h1>
+    <div className="questionForm-container">
+      <CountDown RandomQuestions={testContent.questions} onAnswer={onAnswer} />
+      <h1>{testContent.questions[currentIndex].question}</h1>
+      <div className="answer-container">
+        {testContent.questions[currentIndex].answers.map((item, index) => (
+          <div key={index}>
+            {item}
+            <input
+              onClick={updateHistoryAndValue}
+              key={item + Math.floor(Math.random() * 5)}
+              type={
+                testContent.questions[currentIndex].multichoice === true
+                  ? "checkbox"
+                  : "radio"
+              }
+              name={
+                testContent.questions[currentIndex].multichoice === true
+                  ? item
+                  : "radio"
+              }
+              value={item}
+            />
+          </div>
+        ))}
       </div>
-      {RandomQuestions[index].answers.map((item, index) => (
-        <div key={index}>
-          {item}
-          <input
-            onClick={updateHistoryAndValue}
-            key={item + Math.floor(Math.random() * 5)}
-            type={multichoice ? "checkbox" : "radio"}
-            name={multichoice ? item : "radio"}
-            value={item}
-          />
-        </div>
-      ))}
-    </>
+    </div>
   );
 };
 

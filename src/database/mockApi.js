@@ -13,6 +13,10 @@ mock.onPost("/api/v1/?id=1").reply(200, {
   success: true,
   status: 200,
 });
+mock.onPost("/api/v1/?id=2").reply(200, {
+  success: true,
+  status: 200,
+});
 
 export default http;
 // [

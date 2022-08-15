@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import database from "../../database/database.json";
 const initialState = {
+  currentIndex: 0,
   success: false,
   status: "",
   testContent: {},
@@ -34,9 +35,6 @@ const userReducer = createSlice({
   initialState,
   reducers: {
     Begintest: (state, action) => {
-      let index = database.findIndex(
-        (item) => item.global.test_id === action.payload.testData.global.test_id
-      );
       let dateNow = Date.now();
       for (let k in state.result) {
         if (k === "global") {
@@ -61,39 +59,53 @@ const userReducer = createSlice({
       }
       state.success = action.payload.success;
       state.status = action.payload.status;
+      const ramdomize = (array) => {
+        let currentIndex = array.length;
+        let randomIndex;
+
+        while (currentIndex !== 0) {
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+
+          //swap it with the current element.
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex],
+            array[currentIndex],
+          ];
+        }
+
+        return array;
+      };
+      let index = database.findIndex(
+        (item) => item.global.test_id === action.payload.testData.global.test_id
+      );
       state.testContent = database[index];
+      state.testContent.questions = ramdomize(database[index].questions);
     },
     Answer: (state, action) => {
       state.result.questions.push(action.payload);
-      console.log("dispatch success");
-      // create a partern as the biven example
-      // in the action we have:
-      // - action.payload.AnswerHistory
+      console.log(typeof action.payload.results);
 
-      // let { answers, id, timeout, question, multichoice, topic } =
-      //   action.payload.question;
-      // if (action.payload?.value) {
-      //   state.result.questions.push({
-      //     id: id,
-      //     timeout: timeout, // timeout is seconds
-      //     question: question,
-      //     multichoice: multichoice,
-      //     topic: topic,
-      //     answers: answers,
-      //     clicks: 3,
-      //     history: [],
-      //     results: answers.map((item, index) => ({
-      //       answer: item,
-      //       position: index,
-      //       result: action.payload.value === item ? true : false,
-      //     })),
-      //     completed: true, // has he chosen at least one
-      //   });
-      // }
+      // state.result.questions[state.currentIndex].results.map((item, index) => {
+      //   let count = action.payload.results.reducer(
+      //     (count, i) => (i === item ? count + 1 : count),
+      //     0
+      //   );
+      //   if (count === 0 || count % 2 === 0) {
+      //     console.log("true");
+      //   }
+      // });
+
+      state.currentIndex += 1;
+    },
+    FeedBack: (state, action) => {
+      state.result.candidate.feedback = action.payload;
+      state.result.candidate.send_feedback = true;
+      state.result.stats.time_end = Date.now();
     },
   },
 });
 
-export const { Begintest, Answer } = userReducer.actions;
+export const { Begintest, Answer, FeedBack } = userReducer.actions;
 
 export default userReducer.reducer;

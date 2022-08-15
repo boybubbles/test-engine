@@ -2,7 +2,7 @@
   {
     "global": {
       "test_id": 1,
-      "name": "test name 1",
+      "name": "Test name 1",
       "company": "DISION",
       "timeout": 56,
       "randomize": true,
