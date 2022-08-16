@@ -1,21 +1,10 @@
+@import "../../App.scss";
 .messages {
   display: flex;
   color: red;
+  font-weight: bold;
   .time {
     margin-left: 5px;
     margin-right: 5px;
-  }
-}
-button {
-  padding: 10px 25px;
-  border: none;
-  border-radius: 5px;
-  background-color: darkviolet;
-  color: white !important;
-  font-weight: bold;
-  transition: transform 0.3s ease;
-  &:hover {
-    transform: scale(1.2);
-    cursor: pointer;
   }
 }

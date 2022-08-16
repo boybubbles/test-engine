@@ -1,3 +1,4 @@
+@import "../../App.scss";
 .questionForm-container {
   min-width: 70%;
   .current-question {
@@ -20,7 +21,14 @@
     gap: 15px;
     font-size: 25px;
     input {
-      margin-left: 25px;
+      margin-right: 25px;
+      transform: scale(2.5);
+      cursor: pointer;
+    }
+    .answer-input {
+      &::selection {
+        background-color: $button-color;
+      }
     }
   }
 }

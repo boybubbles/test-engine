@@ -3,3 +3,23 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+$button-color: #f27f0c;
+$text-color: #053f5c;
+$default-color: #429ebd;
+$primary-color: #9fe7f5;
+
+button {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  background-color: $button-color;
+  color: white !important;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+}
+// $bg-color: #053f5c;

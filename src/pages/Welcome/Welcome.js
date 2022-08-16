@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Start } from "../../redux/reducers/userReducer";
 import "../Welcome/Welcome.scss";
 const Welcome = () => {
   const { testContent } = useSelector((rootReducer) => rootReducer.userReducer);
@@ -13,7 +14,7 @@ const Welcome = () => {
     return mDisplay + sDisplay;
   };
   const history = useHistory();
-
+  const dispatch = useDispatch();
   useEffect(() => {}, []);
   return (
     <div className="container">
@@ -33,8 +34,9 @@ const Welcome = () => {
       </div>
       <h4>Start your test now</h4>
       <button
-        onClick={() => {
-          history.push("/testing/");
+        onClick={async () => {
+          dispatch(Start(0));
+          history.push("/testing");
         }}
       >
         Start

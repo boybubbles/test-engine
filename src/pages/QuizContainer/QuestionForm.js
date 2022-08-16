@@ -50,18 +50,23 @@ const QuestionForm = () => {
     };
     console.log("questionform currentIndex:", currentIndex);
     return () => {
-      console.log("-------------questionform prevIndex:--------------", currentIndex);
+      console.log(
+        "-------------questionform prevIndex:--------------",
+        currentIndex
+      );
     };
   }, [currentIndex]);
   return (
     <div className="questionForm-container">
       <CountDown RandomQuestions={testContent.questions} onAnswer={onAnswer} />
-      <h1>{testContent.questions[currentIndex].question}</h1>
+      <h1>{`Question ${currentIndex + 1}: ${
+        testContent.questions[currentIndex].question
+      } `}</h1>
       <div className="answer-container">
         {testContent.questions[currentIndex].answers.map((item, index) => (
           <div key={index}>
-            {item}
             <input
+            className="answer-input"
               onClick={updateHistoryAndValue}
               key={item + Math.floor(Math.random() * 5)}
               type={
@@ -76,6 +81,7 @@ const QuestionForm = () => {
               }
               value={item}
             />
+            {item}
           </div>
         ))}
       </div>

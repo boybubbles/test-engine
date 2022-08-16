@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import database from "../../database/database.json";
 const initialState = {
+  isDone: false,
   currentIndex: 0,
   success: false,
   status: "",
@@ -84,17 +85,11 @@ const userReducer = createSlice({
     },
     Answer: (state, action) => {
       state.result.questions.push(action.payload);
+      state.result.questions[state.currentIndex] = {
+        ...state.result.questions[state.currentIndex],
+        clicks: state.result.questions[state.currentIndex].history.length,
+      };
       console.log(typeof action.payload.results);
-
-      // state.result.questions[state.currentIndex].results.map((item, index) => {
-      //   let count = action.payload.results.reducer(
-      //     (count, i) => (i === item ? count + 1 : count),
-      //     0
-      //   );
-      //   if (count === 0 || count % 2 === 0) {
-      //     console.log("true");
-      //   }
-      // });
 
       state.currentIndex += 1;
     },
@@ -102,10 +97,49 @@ const userReducer = createSlice({
       state.result.candidate.feedback = action.payload;
       state.result.candidate.send_feedback = true;
       state.result.stats.time_end = Date.now();
+      state.isDone = true;
+    },
+    Start: (state, action) => {
+      state.currentIndex = 0;
+    },
+    Reset: (state, action) => {
+      state = {
+        isDone: false,
+        currentIndex: 0,
+        success: false,
+        status: "",
+        testContent: {},
+        result: {
+          global: {
+            test_id: null,
+            name: null,
+            timeout: null, // timeout is seconds
+            randomize: null,
+          },
+
+          candidate: {
+            time_start: null, // UTC timestamp
+            firstname: null,
+            lastname: null,
+            contact: null,
+            send_feedback: false,
+            feedback: "",
+          },
+
+          stats: {
+            time_start: null, // UTC timestamp
+            time_end: null, // UTC timestamp
+          },
+
+          questions: [],
+        },
+      };
+      localStorage.clear();
     },
   },
 });
 
-export const { Begintest, Answer, FeedBack } = userReducer.actions;
+export const { Begintest, Answer, FeedBack, Start, Reset } =
+  userReducer.actions;
 
 export default userReducer.reducer;

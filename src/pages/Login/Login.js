@@ -11,9 +11,9 @@ const Login = () => {
   const history = useHistory();
   const state = useSelector((rootReducer) => rootReducer.userReducer);
   const [error, setError] = useState({
-    lastname: { isValidInput: true, errorMessage: "" },
-    firstname: { isValidInput: true, errorMessage: "" },
-    contact: { isValidInput: true, errorMessage: "" },
+    lastname: { isValidInput: null, errorMessage: "" },
+    firstname: { isValidInput: null, errorMessage: "" },
+    contact: { isValidInput: null, errorMessage: "" },
   });
   const userValue = useRef({
     candidate: {
@@ -84,11 +84,10 @@ const Login = () => {
             onBlur={handleBlur}
             type="text"
           />
+          {error.lastname.errorMessage ? (
+            <span className="error-message">{error.lastname.errorMessage}</span>
+          ) : null}
         </div>
-
-        {error.lastname.errorMessage ? (
-          <span>{error.lastname.errorMessage}</span>
-        ) : null}
 
         <div className="first-name">
           <label>First Name</label>
@@ -99,11 +98,12 @@ const Login = () => {
             onBlur={handleBlur}
             type="text"
           />
+          {error.firstname.errorMessage ? (
+            <span className="error-message">
+              {error.firstname.errorMessage}
+            </span>
+          ) : null}
         </div>
-
-        {error.firstname.errorMessage ? (
-          <span>{error.firstname.errorMessage} </span>
-        ) : null}
 
         <div className="email">
           <label>Email Address</label>
@@ -114,10 +114,11 @@ const Login = () => {
             onBlur={handleBlur}
             type="email"
           />
+          {error.contact.errorMessage ? (
+            <span className="error-message">{error.contact.errorMessage} </span>
+          ) : null}
         </div>
-        {error.contact.errorMessage ? (
-          <span>{error.contact.errorMessage} </span>
-        ) : null}
+
         <button type="submit">Start the Test</button>
       </form>
     </div>

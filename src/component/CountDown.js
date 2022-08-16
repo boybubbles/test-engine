@@ -16,8 +16,7 @@ const CountDown = ({ RandomQuestions, onAnswer }) => {
     }
   };
   const onOver = () => {
-    
-    history.push("/thankyou");
+    history.replace("/thankyou");
   };
   useEffect(() => {
     if (countdown >= 0) {
@@ -56,7 +55,7 @@ const CountDown = ({ RandomQuestions, onAnswer }) => {
       >
         {currentIndex < RandomQuestions.length - 1
           ? "Next"
-          : "It's over! Congratulation, Click to submit your test"}
+          : "It's the last question. Remember to click submit in the next page"}
       </button>
     </div>
   );

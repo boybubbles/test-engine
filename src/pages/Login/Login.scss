@@ -1,3 +1,4 @@
+@import "../../App.scss";
 .container {
   margin: auto;
   max-width: 1200px;
@@ -16,9 +17,9 @@
       margin-top: 15px;
       padding: 15px 20px;
       border: none;
-      background-color: darkorchid;
+      background-color: $button-color;
       border-radius: 5px;
-      color: white;
+      color: #053f5c;
       transition: transform 0.3s ease;
       font-size: 25px;
       &:hover {
@@ -31,6 +32,7 @@
     .name,
     .email,
     .first-name {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -48,8 +50,15 @@
         outline: none;
         color: white;
         font-size: 25px;
-        background-color: rgba($color: #000000, $alpha: 0.69);
+        background-color: rgba($color: $text-color, $alpha: 0.69);
       }
+    }
+    .error-message {
+      position: absolute;
+      top: 85%;
+      left: 30%;
+      z-index: 1;
+      color: red;
     }
   }
 }

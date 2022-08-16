@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import http from "../../database/mockApi";
-import { Button, Result } from "antd";
-import { FeedBack } from "../../redux/reducers/userReducer";
+import { Result } from "antd";
+import { FeedBack, Reset } from "../../redux/reducers/userReducer";
 import "./Thankyou.scss";
 const Thankyou = () => {
-  const { result, testContent } = useSelector(
+  const { result, testContent, isDone } = useSelector(
     (rootReducer) => rootReducer.userReducer
   );
+  if (isDone) {
+    localStorage.setItem("result", JSON.stringify(result));
+    http.post("/api/v1/?id=2", result);
+    console.log(result);
+  }
   const dispatch = useDispatch();
   //send data to server
   const [feedback, setFeedback] = useState();
@@ -21,23 +26,27 @@ const Thankyou = () => {
   };
   const handleSubmit = () => {
     // submit to api
-    http.post("api/v1/?id=2", result).then((response) => {
-      dispatch(FeedBack({ ...response.data, feedback: feedback }));
-    });
+    dispatch(FeedBack(feedback));
   };
 
+  const history = useHistory();
   return (
     <div className="container">
-      {result.candidate.feedback ? (
+      {result.candidate.send_feedback ? (
         <Result
           status="success"
           title="Your result and feedback has been submitted successfully"
           subTitle="We will send you an email within a few days"
           extra={[
-            <Button type="primary" key="console">
-              Go Console
-            </Button>,
-            <Button key="buy">Buy Again</Button>,
+            <button
+              key="doAgain"
+              onClick={async () => {
+                dispatch(Reset());
+                history.push("/");
+              }}
+            >
+              Do it again
+            </button>,
           ]}
         />
       ) : (

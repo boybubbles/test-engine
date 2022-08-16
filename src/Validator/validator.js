@@ -28,26 +28,30 @@ export const validateInput = (checkingValue, type) => {
     }
   }
   if (type === "firstname") {
-    const regex = /^[a-zA-Z ]*$/;
+    const regex =
+      /^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]+$/;
     const checkingResult = regex.exec(checkingValue);
-    if (checkingResult !== null) {
+    if (checkingResult) {
       return { isValidInput: true, errorMessage: "" };
     } else {
+      console.log("false", checkingResult);
       return {
         isValidInput: false,
-        errorMessage: "Please enter an english name",
+        errorMessage: "Invalid character",
       };
     }
   }
   if (type === "lastname") {
-    const regex = /^[a-zA-Z ]*$/;
+    const regex =
+      /^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]+$/;
     const checkingResult = regex.exec(checkingValue);
     if (checkingResult !== null) {
       return { isValidInput: true, errorMessage: "" };
     } else {
+      console.log("false", checkingResult);
       return {
         isValidInput: false,
-        errorMessage: "Please enter an english name",
+        errorMessage: "Invalid character",
       };
     }
   }
