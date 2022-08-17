@@ -12,14 +12,16 @@
     font-size: $fontSize-header;
     align-self: center;
   }
-  .messages {
-    align-self: center;
-    display: flex;
-    color: red;
-    font-weight: bold;
-    .time {
-      margin-left: 5px;
-      margin-right: 5px;
+  .content {
+    .messages {
+      align-self: center;
+      display: flex;
+      color: red;
+      font-weight: bold;
+      .time {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
     }
   }
 }
