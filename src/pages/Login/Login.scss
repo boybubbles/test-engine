@@ -1,5 +1,5 @@
 @import "../../App.scss";
-.container {
+.container-login {
   margin: auto;
   max-width: 1200px;
   height: 100vh;
@@ -8,20 +8,29 @@
   align-items: center;
   justify-content: center;
   gap: 15px;
-  h1 {
-    font-size: 50px;
+  .login-logo {
+    transform: scale(0.69);
   }
+  .login-message {
+    font-size: $fontSize-normal;
+  }
+  .login-header {
+    font-size: $fontSize-header;
+  }
+
   .form-group {
-    width: 100%;
+    width: 50%;
     button {
       margin-top: 15px;
       padding: 15px 20px;
       border: none;
-      background-color: $button-color;
+      background-color: $primary-color;
       border-radius: 5px;
       color: #053f5c;
       transition: transform 0.3s ease;
-      font-size: 25px;
+      font-size: $fontSize-normal;
+      width: 25%;
+      align-self: center;
       &:hover {
         cursor: pointer;
         transform: scale(1.2);
@@ -38,7 +47,7 @@
       justify-content: space-between;
       gap: 55px;
       label {
-        font-size: 25px;
+        font-size: $fontSize-subHeader;
       }
       input {
         width: 70%;
@@ -48,9 +57,8 @@
         margin: 15px 0px;
         border: none;
         outline: none;
-        color: white;
-        font-size: 25px;
-        background-color: rgba($color: $text-color, $alpha: 0.69);
+        font-size: $fontSize-subHeader;
+        background-color: rgba($color: $primary-color, $alpha: 0.5);
       }
     }
     .error-message {

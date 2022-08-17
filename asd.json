@@ -2,210 +2,155 @@
   "global": {
     "test_id": 1,
     "name": "Test name 1",
-    "timeout": 56,
+    "timeout": 42,
     "randomize": true
   },
   "candidate": {
-    "time_start": 1660647975345,
+    "time_start": 1660726378271,
     "firstname": "zxc",
-    "lastname": "qzxcz",
+    "lastname": "zxc",
     "contact": "zxc@gmail.com",
-    "send_feedback": true,
-    "feedback": "zxcvxcbvkjzshv ,jmzxdcftgb"
+    "send_feedback": true
   },
   "stats": {
-    "time_start": 1660647975345,
-    "time_end": 1660647984913
+    "time_start": 1660726378271,
+    "time_end": 1660726397410
   },
   "questions": [
     {
-      "id": 0,
-      "timeout": 3,
-      "question": "What is your name 1?",
-      "multichoice": false,
-      "topic": "Softskills",
-      "answers": [
-        "Florian",
-        "Sven",
-        "Duy",
-        "Minh",
-        "Khoa"
-      ],
-      "history": [],
-      "results": [
-        [
-          {
-            "answer": "Florian",
-            "position": 0,
-            "result": false
-          },
-          {
-            "answer": "Sven",
-            "position": 1,
-            "result": false
-          },
-          {
-            "answer": "Duy",
-            "position": 2,
-            "result": false
-          },
-          {
-            "answer": "Minh",
-            "position": 3,
-            "result": false
-          },
-          {
-            "answer": "Khoa",
-            "position": 4,
-            "result": false
-          }
-        ]
-      ],
-      "completed": false,
-      "clicks": 0
-    },
-    {
-      "id": 7,
-      "timeout": 17,
-      "question": "Where do you went to school 9?",
+      "id": 6,
+      "timeout": 8,
+      "question": "Question of test name 1 timeout: 8s?",
       "multichoice": true,
       "topic": "Technical",
       "answers": [
-        "32",
-        "32",
-        "33",
-        "34",
-        "35"
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
       ],
-      "history": [],
+      "history": [
+        {
+          "id": 0,
+          "pos": 0,
+          "timestamp": 1660726383411
+        },
+        {
+          "id": 1,
+          "pos": 1,
+          "timestamp": 1660726383807
+        },
+        {
+          "id": 2,
+          "pos": 2,
+          "timestamp": 1660726384116
+        },
+        {
+          "id": 3,
+          "pos": 3,
+          "timestamp": 1660726384431
+        },
+        {
+          "id": 4,
+          "pos": 4,
+          "timestamp": 1660726384652
+        }
+      ],
       "results": [
-        [
-          {
-            "answer": "32",
-            "position": 0,
-            "result": false
-          },
-          {
-            "answer": "32",
-            "position": 1,
-            "result": false
-          },
-          {
-            "answer": "33",
-            "position": 2,
-            "result": false
-          },
-          {
-            "answer": "34",
-            "position": 3,
-            "result": false
-          },
-          {
-            "answer": "35",
-            "position": 4,
-            "result": false
-          }
-        ]
+        {
+          "answer": "26",
+          "position": 0,
+          "result": true
+        },
+        {
+          "answer": "27",
+          "position": 1,
+          "result": true
+        },
+        {
+          "answer": "28",
+          "position": 2,
+          "result": true
+        },
+        {
+          "answer": "29",
+          "position": 3,
+          "result": true
+        },
+        {
+          "answer": "30",
+          "position": 4,
+          "result": true
+        }
       ],
-      "completed": false,
-      "clicks": 0
+      "completed": true,
+      "clicks": 5
     },
     {
-      "id": 2,
-      "timeout": 5,
-      "question": "Where do you went to school 3?",
+      "id": 4,
+      "timeout": 6,
+      "question": "Question of test name 1 timeout: 6s?",
       "multichoice": true,
       "topic": "Technical",
       "answers": [
-        "6",
-        "7",
-        "8",
-        "9",
-        "10"
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
       ],
-      "history": [],
+      "history": [
+        {
+          "id": 0,
+          "pos": 0,
+          "timestamp": 1660726386731
+        },
+        {
+          "id": 1,
+          "pos": 1,
+          "timestamp": 1660726387075
+        },
+        {
+          "id": 2,
+          "pos": 2,
+          "timestamp": 1660726387591
+        }
+      ],
       "results": [
-        [
-          {
-            "answer": "6",
-            "position": 0,
-            "result": false
-          },
-          {
-            "answer": "7",
-            "position": 1,
-            "result": false
-          },
-          {
-            "answer": "8",
-            "position": 2,
-            "result": false
-          },
-          {
-            "answer": "9",
-            "position": 3,
-            "result": false
-          },
-          {
-            "answer": "10",
-            "position": 4,
-            "result": false
-          }
-        ]
+        {
+          "answer": "16",
+          "position": 0,
+          "result": true
+        },
+        {
+          "answer": "17",
+          "position": 1,
+          "result": true
+        },
+        {
+          "answer": "18",
+          "position": 2,
+          "result": true
+        },
+        {
+          "answer": "19",
+          "position": 3,
+          "result": false
+        },
+        {
+          "answer": "20",
+          "position": 4,
+          "result": false
+        }
       ],
-      "completed": false,
-      "clicks": 0
-    },
-    {
-      "id": 1,
-      "timeout": 4,
-      "question": "Where do you went to school 2?",
-      "multichoice": true,
-      "topic": "Technical",
-      "answers": [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5"
-      ],
-      "history": [],
-      "results": [
-        [
-          {
-            "answer": "1",
-            "position": 0,
-            "result": false
-          },
-          {
-            "answer": "2",
-            "position": 1,
-            "result": false
-          },
-          {
-            "answer": "3",
-            "position": 2,
-            "result": false
-          },
-          {
-            "answer": "4",
-            "position": 3,
-            "result": false
-          },
-          {
-            "answer": "5",
-            "position": 4,
-            "result": false
-          }
-        ]
-      ],
-      "completed": false,
-      "clicks": 0
+      "completed": true,
+      "clicks": 3
     },
     {
       "id": 5,
       "timeout": 7,
-      "question": "Where do you went to school 7?",
+      "question": "Question of test name 1 timeout: 7s?",
       "multichoice": true,
       "topic": "Technical",
       "answers": [
@@ -217,79 +162,31 @@
       ],
       "history": [],
       "results": [
-        [
-          {
-            "answer": "21",
-            "position": 0,
-            "result": false
-          },
-          {
-            "answer": "22",
-            "position": 1,
-            "result": false
-          },
-          {
-            "answer": "23",
-            "position": 2,
-            "result": false
-          },
-          {
-            "answer": "24",
-            "position": 3,
-            "result": false
-          },
-          {
-            "answer": "25",
-            "position": 4,
-            "result": false
-          }
-        ]
-      ],
-      "completed": false,
-      "clicks": 0
-    },
-    {
-      "id": 6,
-      "timeout": 8,
-      "question": "Where do you went to school 8?",
-      "multichoice": true,
-      "topic": "Technical",
-      "answers": [
-        "26",
-        "27",
-        "28",
-        "29",
-        "30"
-      ],
-      "history": [],
-      "results": [
-        [
-          {
-            "answer": "26",
-            "position": 0,
-            "result": false
-          },
-          {
-            "answer": "27",
-            "position": 1,
-            "result": false
-          },
-          {
-            "answer": "28",
-            "position": 2,
-            "result": false
-          },
-          {
-            "answer": "29",
-            "position": 3,
-            "result": false
-          },
-          {
-            "answer": "30",
-            "position": 4,
-            "result": false
-          }
-        ]
+        {
+          "answer": "21",
+          "position": 0,
+          "result": false
+        },
+        {
+          "answer": "22",
+          "position": 1,
+          "result": false
+        },
+        {
+          "answer": "23",
+          "position": 2,
+          "result": false
+        },
+        {
+          "answer": "24",
+          "position": 3,
+          "result": false
+        },
+        {
+          "answer": "25",
+          "position": 4,
+          "result": false
+        }
       ],
       "completed": false,
       "clicks": 0
@@ -297,7 +194,7 @@
     {
       "id": 3,
       "timeout": 5,
-      "question": "Where do you went to school 4?",
+      "question": "Question of test name 1 timeout: 5s?",
       "multichoice": true,
       "topic": "Technical",
       "answers": [
@@ -309,33 +206,251 @@
       ],
       "history": [],
       "results": [
-        [
-          {
-            "answer": "11",
-            "position": 0,
-            "result": false
-          },
-          {
-            "answer": "12",
-            "position": 1,
-            "result": false
-          },
-          {
-            "answer": "13",
-            "position": 2,
-            "result": false
-          },
-          {
-            "answer": "14",
-            "position": 3,
-            "result": false
-          },
-          {
-            "answer": "15",
-            "position": 4,
-            "result": false
-          }
-        ]
+        {
+          "answer": "11",
+          "position": 0,
+          "result": false
+        },
+        {
+          "answer": "12",
+          "position": 1,
+          "result": false
+        },
+        {
+          "answer": "13",
+          "position": 2,
+          "result": false
+        },
+        {
+          "answer": "14",
+          "position": 3,
+          "result": false
+        },
+        {
+          "answer": "15",
+          "position": 4,
+          "result": false
+        }
+      ],
+      "completed": false,
+      "clicks": 0
+    },
+    {
+      "id": 7,
+      "timeout": 9,
+      "question": "Question of test name 1 timeout: 10s?",
+      "multichoice": true,
+      "topic": "Technical",
+      "answers": [
+        "32",
+        "32",
+        "33",
+        "34",
+        "35"
+      ],
+      "history": [],
+      "results": [
+        {
+          "answer": "32",
+          "position": 0,
+          "result": false
+        },
+        {
+          "answer": "32",
+          "position": 1,
+          "result": false
+        },
+        {
+          "answer": "33",
+          "position": 2,
+          "result": false
+        },
+        {
+          "answer": "34",
+          "position": 3,
+          "result": false
+        },
+        {
+          "answer": "35",
+          "position": 4,
+          "result": false
+        }
+      ],
+      "completed": false,
+      "clicks": 0
+    },
+    {
+      "id": 0,
+      "timeout": 3,
+      "question": "Question of test name 1 timeout: 3s?",
+      "multichoice": false,
+      "topic": "Softskills",
+      "answers": [
+        "Florian",
+        "Sven",
+        "Duy",
+        "Minh",
+        "Khoa"
+      ],
+      "history": [],
+      "results": [
+        {
+          "answer": "Florian",
+          "position": 0,
+          "result": false
+        },
+        {
+          "answer": "Sven",
+          "position": 1,
+          "result": false
+        },
+        {
+          "answer": "Duy",
+          "position": 2,
+          "result": false
+        },
+        {
+          "answer": "Minh",
+          "position": 3,
+          "result": false
+        },
+        {
+          "answer": "Khoa",
+          "position": 4,
+          "result": false
+        }
+      ],
+      "completed": false,
+      "clicks": 0
+    },
+    {
+      "id": 2,
+      "timeout": 5,
+      "question": "Question of test name 1 timeout: 5s?",
+      "multichoice": true,
+      "topic": "Technical",
+      "answers": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "history": [],
+      "results": [
+        {
+          "answer": "6",
+          "position": 0,
+          "result": false
+        },
+        {
+          "answer": "7",
+          "position": 1,
+          "result": false
+        },
+        {
+          "answer": "8",
+          "position": 2,
+          "result": false
+        },
+        {
+          "answer": "9",
+          "position": 3,
+          "result": false
+        },
+        {
+          "answer": "10",
+          "position": 4,
+          "result": false
+        }
+      ],
+      "completed": false,
+      "clicks": 0
+    },
+    {
+      "id": 1,
+      "timeout": 4,
+      "question": "Question of test name 1 timeout: 4s?",
+      "multichoice": true,
+      "topic": "Technical",
+      "answers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "history": [],
+      "results": [
+        {
+          "answer": "1",
+          "position": 0,
+          "result": false
+        },
+        {
+          "answer": "2",
+          "position": 1,
+          "result": false
+        },
+        {
+          "answer": "3",
+          "position": 2,
+          "result": false
+        },
+        {
+          "answer": "4",
+          "position": 3,
+          "result": false
+        },
+        {
+          "answer": "5",
+          "position": 4,
+          "result": false
+        }
+      ],
+      "completed": false,
+      "clicks": 0
+    },
+    {
+      "id": 1,
+      "timeout": 4,
+      "question": "Question of test name 1 timeout: 4s?",
+      "multichoice": true,
+      "topic": "Technical",
+      "answers": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "history": [],
+      "results": [
+        {
+          "answer": "1",
+          "position": 0,
+          "result": false
+        },
+        {
+          "answer": "2",
+          "position": 1,
+          "result": false
+        },
+        {
+          "answer": "3",
+          "position": 2,
+          "result": false
+        },
+        {
+          "answer": "4",
+          "position": 3,
+          "result": false
+        },
+        {
+          "answer": "5",
+          "position": 4,
+          "result": false
+        }
       ],
       "completed": false,
       "clicks": 0

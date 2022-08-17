@@ -16,9 +16,11 @@ const CountDown = ({ RandomQuestions, onAnswer }) => {
     }
   };
   const onOver = () => {
+    onAnswer();
     history.replace("/thankyou");
   };
   useEffect(() => {
+    console.log("currentIndex", currentIndex);
     if (countdown >= 0) {
       const timerID = setInterval(() => {
         setCountDown((prevState) => prevState - 1);
@@ -33,10 +35,6 @@ const CountDown = ({ RandomQuestions, onAnswer }) => {
         onOver();
       }
     }
-    console.log("CountDown prevIndex", currentIndex);
-    return () => {
-      console.log("----------CountDown prevIndex--------------", currentIndex);
-    };
   }, [countdown]);
   return (
     <div className="countdown-container">
@@ -46,16 +44,17 @@ const CountDown = ({ RandomQuestions, onAnswer }) => {
       <button
         onClick={() => {
           if (currentIndex < RandomQuestions.length - 1) {
-            setCountDown(RandomQuestions[currentIndex].timeout);
             onAnswer();
+            setCountDown(RandomQuestions[currentIndex + 1].timeout);
           } else {
+            onAnswer();
             onOver();
           }
         }}
       >
         {currentIndex < RandomQuestions.length - 1
           ? "Next"
-          : "It's the last question. Remember to click submit in the next page"}
+          : "It's the last question. Submit your result in the next page"}
       </button>
     </div>
   );

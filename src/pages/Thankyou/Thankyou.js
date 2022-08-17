@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import http from "../../database/mockApi";
 import { Result } from "antd";
-import { FeedBack, Reset } from "../../redux/reducers/userReducer";
+import { FeedBack, NewTest } from "../../redux/reducers/userReducer";
 import "./Thankyou.scss";
+import MiniCountDown from "../../component/MiniCountDown";
 const Thankyou = () => {
   const { result, testContent, isDone } = useSelector(
     (rootReducer) => rootReducer.userReducer
@@ -32,21 +33,17 @@ const Thankyou = () => {
   const history = useHistory();
   return (
     <div className="container">
-      {result.candidate.send_feedback ? (
+      {
+      
+      result.candidate.send_feedback ? (
         <Result
           status="success"
           title="Your result and feedback has been submitted successfully"
           subTitle="We will send you an email within a few days"
           extra={[
-            <button
-              key="doAgain"
-              onClick={async () => {
-                dispatch(Reset());
-                history.push("/");
-              }}
-            >
-              Do it again
-            </button>,
+            <a href="/" key="doAgain">
+              Back to Home Page
+            </a>,
           ]}
         />
       ) : (

@@ -3,6 +3,17 @@ textarea {
   padding: 15px;
   resize: both !important;
 }
-ant-result-success {
-  
+a {
+  text-decoration: none !important;
+  margin-top: 15px;
+  padding: 15px 20px;
+  border: none;
+  background-color: $primary-color !important;
+  border-radius: 5px;
+  color: white !important;
+  transition: font-size 0.3s ease !important;
+  &:hover {
+    cursor: pointer;
+    font-size: 25px !important;
+  }
 }

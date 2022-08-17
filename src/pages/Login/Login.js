@@ -7,6 +7,7 @@ import axios from "../../database/mockApi";
 import { Begintest } from "../../redux/reducers/userReducer";
 import logo from "../../image/logo.jpg";
 import { validateInput } from "../../Validator/validator";
+
 const Login = () => {
   const history = useHistory();
   const state = useSelector((rootReducer) => rootReducer.userReducer);
@@ -33,6 +34,7 @@ const Login = () => {
         error.contact.isValidInput
       ) {
         const result = await axios.post("/api/v1/?id=1", userValue);
+        console.log("payload1", userValue);
         dispatch(Begintest({ ...result.data, testData: userValue.current }));
       }
     } catch (error) {
@@ -52,6 +54,7 @@ const Login = () => {
   };
   const handleBlur = ({ target }) => {
     let { value, name } = target;
+
     handleValidInput(value, name);
   };
 
@@ -70,10 +73,13 @@ const Login = () => {
     }
   }, [state?.success]);
   return (
-    <div className="container">
-      <h1>Wellcome!</h1>
-      <p>Good luck with your test results! :v</p>
-      <img src={logo} alt="..." />
+    <div className="container-login">
+      <img className="login-logo" src={logo} alt="..." />
+      <div className="login-header">
+        <h1>Wellcome!</h1>
+      </div>
+
+      <p className="login-message">Good luck with your test results! 😉</p>
       <form onSubmit={handleSubmit} className="form-group">
         <div className="name">
           <label>Last Name</label>
@@ -119,7 +125,7 @@ const Login = () => {
           ) : null}
         </div>
 
-        <button type="submit">Start the Test</button>
+        <button type="submit">Get ready...?</button>
       </form>
     </div>
   );

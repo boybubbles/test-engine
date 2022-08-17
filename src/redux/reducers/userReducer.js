@@ -89,57 +89,35 @@ const userReducer = createSlice({
         ...state.result.questions[state.currentIndex],
         clicks: state.result.questions[state.currentIndex].history.length,
       };
-      console.log(typeof action.payload.results);
-
+      for (let r of state.result.questions[state.currentIndex].results) {
+        for (let h of state.result.questions[state.currentIndex].history) {
+          if (r.position === h?.pos) {
+            r.result ? (r.result = false) : (r.result = true);
+          }
+        }
+      }
       state.currentIndex += 1;
     },
     FeedBack: (state, action) => {
       state.result.candidate.feedback = action.payload;
       state.result.candidate.send_feedback = true;
       state.result.stats.time_end = Date.now();
+      state.status = false;
       state.isDone = true;
     },
-    Start: (state, action) => {
-      state.currentIndex = 0;
+    NewTest: (state, action) => {
+      localStorage.clear();
+      state = action.payload;
     },
     Reset: (state, action) => {
-      state = {
-        isDone: false,
-        currentIndex: 0,
-        success: false,
-        status: "",
-        testContent: {},
-        result: {
-          global: {
-            test_id: null,
-            name: null,
-            timeout: null, // timeout is seconds
-            randomize: null,
-          },
-
-          candidate: {
-            time_start: null, // UTC timestamp
-            firstname: null,
-            lastname: null,
-            contact: null,
-            send_feedback: false,
-            feedback: "",
-          },
-
-          stats: {
-            time_start: null, // UTC timestamp
-            time_end: null, // UTC timestamp
-          },
-
-          questions: [],
-        },
-      };
-      localStorage.clear();
+      state.success = false;
+      state.currentIndex = 0;
+      state.result.questions = [];
     },
   },
 });
 
-export const { Begintest, Answer, FeedBack, Start, Reset } =
+export const { Begintest, Answer, FeedBack, NewTest, Reset } =
   userReducer.actions;
 
 export default userReducer.reducer;

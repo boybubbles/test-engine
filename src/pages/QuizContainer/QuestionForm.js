@@ -4,6 +4,7 @@ import CountDown from "../../component/CountDown";
 import { Answer } from "../../redux/reducers/userReducer";
 import { useSelector } from "react-redux";
 import "./QuestionForm.scss";
+import { useHistory } from "react-router-dom";
 
 const QuestionForm = () => {
   const { testContent } = useSelector((rootReducer) => rootReducer.userReducer);
@@ -11,6 +12,7 @@ const QuestionForm = () => {
   const { currentIndex } = useSelector(
     (rootReducer) => rootReducer.userReducer
   );
+  const history = useHistory();
   const dispatch = useDispatch();
   const instance = useRef();
   const updateHistoryAndValue = ({ target }) => {
@@ -39,34 +41,28 @@ const QuestionForm = () => {
       topic: testContent.questions[currentIndex].topic,
       answers: testContent.questions[currentIndex].answers,
       history: [],
-      results: [
-        testContent.questions[currentIndex].answers.map((item, index) => ({
+      results: testContent.questions[currentIndex].answers.map(
+        (item, index) => ({
           answer: item,
           position: index,
           result: false,
-        })),
-      ],
+        })
+      ),
+
       completed: false, // has he chosen at least one
     };
-    console.log("questionform currentIndex:", currentIndex);
-    return () => {
-      console.log(
-        "-------------questionform prevIndex:--------------",
-        currentIndex
-      );
-    };
-  }, [currentIndex]);
+  }, [currentIndex, testContent]);
   return (
     <div className="questionForm-container">
       <CountDown RandomQuestions={testContent.questions} onAnswer={onAnswer} />
       <h1>{`Question ${currentIndex + 1}: ${
-        testContent.questions[currentIndex].question
+        testContent?.questions[currentIndex].question
       } `}</h1>
       <div className="answer-container">
         {testContent.questions[currentIndex].answers.map((item, index) => (
           <div key={index}>
             <input
-            className="answer-input"
+              className="answer-input"
               onClick={updateHistoryAndValue}
               key={item + Math.floor(Math.random() * 5)}
               type={

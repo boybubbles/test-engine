@@ -30,11 +30,13 @@ export const validateInput = (checkingValue, type) => {
   if (type === "firstname") {
     const regex =
       /^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]+$/;
-    const checkingResult = regex.exec(checkingValue);
+
+    const checkingResult = regex.exec(
+      checkingValue.replace(/\s{2,}/g, " ").trim()
+    );
     if (checkingResult) {
       return { isValidInput: true, errorMessage: "" };
     } else {
-      console.log("false", checkingResult);
       return {
         isValidInput: false,
         errorMessage: "Invalid character",
@@ -44,11 +46,13 @@ export const validateInput = (checkingValue, type) => {
   if (type === "lastname") {
     const regex =
       /^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]+$/;
-    const checkingResult = regex.exec(checkingValue);
+
+    const checkingResult = regex.exec(
+      checkingValue.replace(/\s{2,}/g, " ").trim()
+    );
     if (checkingResult !== null) {
       return { isValidInput: true, errorMessage: "" };
     } else {
-      console.log("false", checkingResult);
       return {
         isValidInput: false,
         errorMessage: "Invalid character",

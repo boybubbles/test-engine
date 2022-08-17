@@ -4,16 +4,19 @@
   box-sizing: border-box;
 }
 
-$button-color: #f27f0c;
+$primary-color: #90a6b8;
 $text-color: #053f5c;
 $default-color: #429ebd;
-$primary-color: #9fe7f5;
+
+$fontSize-normal: 18px;
+$fontSize-header: 35px;
+$fontSize-subHeader: 20px;
 
 button {
   padding: 10px 25px;
   border: none;
   border-radius: 5px;
-  background-color: $button-color;
+  background-color: $primary-color;
   color: white !important;
   font-weight: bold;
   transition: transform 0.3s ease;
