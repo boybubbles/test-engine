@@ -21,25 +21,25 @@ const CountDown = ({ RandomQuestions, onAnswer }) => {
   };
   useEffect(() => {
     console.log("currentIndex", currentIndex);
-    if (countdown >= 0) {
-      const timerID = setInterval(() => {
-        setCountDown((prevState) => prevState - 1);
-      }, 1000);
-      return () => {
-        clearInterval(timerID);
-      };
-    } else {
-      if (currentIndex < RandomQuestions.length - 1) {
-        onTimesUp();
-      } else {
-        onOver();
-      }
-    }
+    // if (countdown >= 0) {
+    //   const timerID = setInterval(() => {
+    //     setCountDown((prevState) => prevState - 1);
+    //   }, 1000);
+    //   return () => {
+    //     clearInterval(timerID);
+    //   };
+    // } else {
+    //   if (currentIndex < RandomQuestions.length - 1) {
+    //     onTimesUp();
+    //   } else {
+    //     onOver();
+    //   }
+    // }
   }, [countdown]);
   return (
     <div className="countdown-container">
-      <h3>Time Left: </h3>
-      <h1 className="countdown">{countdown}</h1>
+      <div>Time Left: </div>
+      <div className="countdown">{countdown}</div>
       <div className="flex-growth"></div>
       <button
         onClick={() => {
@@ -54,7 +54,7 @@ const CountDown = ({ RandomQuestions, onAnswer }) => {
       >
         {currentIndex < RandomQuestions.length - 1
           ? "Next"
-          : "It's the last question. Submit your result in the next page"}
+          : "Last Question, submit results next page"}
       </button>
     </div>
   );

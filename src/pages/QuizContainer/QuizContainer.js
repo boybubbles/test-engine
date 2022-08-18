@@ -4,6 +4,7 @@ import QuestionForm from "./QuestionForm";
 import { useSelector } from "react-redux";
 import { Progress } from "antd";
 import { useHistory } from "react-router-dom";
+import logo from "../../image/logo.jpg";
 
 const QuizContainer = () => {
   const { testContent, currentIndex } = useSelector(
@@ -35,16 +36,21 @@ const QuizContainer = () => {
       )}
       {testContent?.global && (
         <div className="QuizContainer">
-          <h1>{`${testContent?.global.name} : ${testContent.questions[currentIndex].topic}`}</h1>
-          <div className="QuizContainer-inner">
-            <div className="progress-bar">
-              <Progress
-                percent={(currentIndex * 100) / testContent?.questions.length}
-                showInfo={false}
-                steps={testContent?.questions.length}
-              />
+          <div className="QuizContainer-logo">
+            <img src={logo} />
+          </div>
+          <div className="QuizContainer-content">
+            <div className="test-name">{`${testContent?.global.name} : ${testContent.questions[currentIndex].topic}`}</div>
+            <div className="QuizContainer-inner">
+              <div className="progress-bar">
+                <Progress
+                  percent={(currentIndex * 100) / testContent?.questions.length}
+                  showInfo={false}
+                  steps={testContent?.questions.length}
+                />
+              </div>
+              <QuestionForm />
             </div>
-            <QuestionForm />
           </div>
         </div>
       )}

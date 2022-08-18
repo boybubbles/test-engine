@@ -55,9 +55,9 @@ const QuestionForm = () => {
   return (
     <div className="questionForm-container">
       <CountDown RandomQuestions={testContent.questions} onAnswer={onAnswer} />
-      <h1>{`Question ${currentIndex + 1}: ${
+      <div className="question">{`Question ${currentIndex + 1}: ${
         testContent?.questions[currentIndex].question
-      } `}</h1>
+      } `}</div>
       <div className="answer-container">
         {testContent.questions[currentIndex].answers.map((item, index) => (
           <div key={index}>

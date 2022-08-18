@@ -1,19 +1,34 @@
 @import "../../App.scss";
-textarea {
-  padding: 15px;
-  resize: both !important;
-}
-a {
-  text-decoration: none !important;
-  margin-top: 15px;
-  padding: 15px 20px;
-  border: none;
-  background-color: $primary-color !important;
-  border-radius: 5px;
-  color: white !important;
-  transition: font-size 0.3s ease !important;
-  &:hover {
-    cursor: pointer;
-    font-size: 25px !important;
+
+.container-thankyou {
+  .logo {
+    transform: scale(0.69);
+    margin-bottom: 5%;
+  }
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5% auto auto auto;
+  textarea {
+    padding: 15px;
+    resize: both !important;
+  }
+  a {
+    text-decoration: none !important;
+    margin-top: 15px;
+    padding: 15px 20px;
+    border: none;
+    background-color: $primary-color !important;
+    border-radius: 5px;
+    color: white !important;
+    transition: font-size 0.3s ease !important;
+    &:hover {
+      cursor: pointer;
+      font-size: 25px !important;
+    }
+  }
+  .thankyou {
+    font-size: $fontSize-header;
   }
 }

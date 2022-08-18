@@ -74,59 +74,66 @@ const Login = () => {
   }, [state?.success]);
   return (
     <div className="container-login">
-      <img className="login-logo" src={logo} alt="..." />
       <div className="login-header">
-        <h1>Wellcome!</h1>
+        <img className="login-logo" src={logo} alt="..." />
+        <div className="login-header">
+          <h1>Wellcome!</h1>
+        </div>
       </div>
+      <div className="login-content">
+        <p className="login-message">Good luck with your test results! 😉</p>
+        <form onSubmit={handleSubmit} className="form-group">
+          <div className="name">
+            <label>Last Name</label>
+            <input
+              autoComplete="off"
+              name="lastname"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              type="text"
+            />
+            {error.lastname.errorMessage ? (
+              <span className="error-message">
+                {error.lastname.errorMessage}
+              </span>
+            ) : null}
+          </div>
 
-      <p className="login-message">Good luck with your test results! 😉</p>
-      <form onSubmit={handleSubmit} className="form-group">
-        <div className="name">
-          <label>Last Name</label>
-          <input
-            autoComplete="off"
-            name="lastname"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            type="text"
-          />
-          {error.lastname.errorMessage ? (
-            <span className="error-message">{error.lastname.errorMessage}</span>
-          ) : null}
-        </div>
+          <div className="first-name">
+            <label>First Name</label>
+            <input
+              autoComplete="off"
+              name="firstname"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              type="text"
+            />
+            {error.firstname.errorMessage ? (
+              <span className="error-message">
+                {error.firstname.errorMessage}
+              </span>
+            ) : null}
+          </div>
 
-        <div className="first-name">
-          <label>First Name</label>
-          <input
-            autoComplete="off"
-            name="firstname"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            type="text"
-          />
-          {error.firstname.errorMessage ? (
-            <span className="error-message">
-              {error.firstname.errorMessage}
-            </span>
-          ) : null}
-        </div>
+          <div className="email">
+            <label>Email Address</label>
+            <input
+              autoComplete="off"
+              name="contact"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              type="email"
+            />
+            {error.contact.errorMessage ? (
+              <span className="error-message">
+                {error.contact.errorMessage}{" "}
+              </span>
+            ) : null}
+          </div>
 
-        <div className="email">
-          <label>Email Address</label>
-          <input
-            autoComplete="off"
-            name="contact"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            type="email"
-          />
-          {error.contact.errorMessage ? (
-            <span className="error-message">{error.contact.errorMessage} </span>
-          ) : null}
-        </div>
-
-        <button type="submit">Get ready...?</button>
-      </form>
+          <button type="submit">Get ready...?</button>
+        </form>
+      </div>
     </div>
   );
 };

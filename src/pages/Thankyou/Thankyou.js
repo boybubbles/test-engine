@@ -5,7 +5,7 @@ import http from "../../database/mockApi";
 import { Result } from "antd";
 import { FeedBack, NewTest } from "../../redux/reducers/userReducer";
 import "./Thankyou.scss";
-import MiniCountDown from "../../component/MiniCountDown";
+import logo from "../../image/logo.jpg";
 const Thankyou = () => {
   const { result, testContent, isDone } = useSelector(
     (rootReducer) => rootReducer.userReducer
@@ -32,10 +32,11 @@ const Thankyou = () => {
 
   const history = useHistory();
   return (
-    <div className="container">
-      {
-      
-      result.candidate.send_feedback ? (
+    <div className="container-thankyou">
+      <div className="logo">
+        <img src={logo} />
+      </div>
+      {result.candidate.send_feedback ? (
         <Result
           status="success"
           title="Your result and feedback has been submitted successfully"
@@ -48,8 +49,8 @@ const Thankyou = () => {
         />
       ) : (
         <>
-          <h1>Thankyou, {candidate.lastname}</h1>
-          <h3>{messages.thankyou}</h3>
+          <div className="thankyou">Thankyou, {candidate.lastname}</div>
+          <div className="thankyou">{messages.thankyou}</div>
           <div>
             <textarea
               cols="30"

@@ -5,22 +5,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 50px;
-  .QuizContainer-inner {
-    min-width: 70%;
-    .progress-bar {
-      width: 100%;
-      margin-bottom: 5%;
-      .ant-progress {
+  font-size: $fontSize-normal;
+  margin-top: 5%;
+  .QuizContainer-logo {
+    transform: scale(0.69);
+  }
+  .QuizContainer-content {
+    width: 50%;
+    .test-name {
+      font-size: $fontSize-header;
+      text-align: center;
+    }
+    .QuizContainer-inner {
+      .progress-bar {
         width: 100%;
-        .ant-progress-steps-outer {
-          gap: 15px;
-          justify-content: center;
-          .ant-progress-steps-item {
-            width: 10% !important;
-            &-active {
-              background-color: $primary-color;
+        margin-bottom: 5%;
+        .ant-progress {
+          width: 100%;
+          .ant-progress-steps-outer {
+            gap: 15px;
+            justify-content: center;
+            .ant-progress-steps-item {
+              width: 10% !important;
+              &-active {
+                background-color: $primary-color;
+              }
             }
           }
         }

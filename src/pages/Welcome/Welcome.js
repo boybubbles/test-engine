@@ -29,8 +29,8 @@ const Welcome = () => {
         <img src={logo} />
       </div>
       <div className="content">
-        <h1 className="wellcome-title">Important Info</h1>
-        <h3 className="wellcome-title">{testContent.messages.information}</h3>
+        <div className="wellcome-title">Important Info</div>
+        <div className="wellcome-title">{testContent.messages.information}</div>
         <div className="messages">
           <div>You will have</div>
           <div className="time">
@@ -44,10 +44,10 @@ const Welcome = () => {
           <div>with {testContent.questions.length} questions for this test</div>
         </div>
         <div className="note">
-          <h4 style={{ color: "red", fontWeight: "bold" }}>
+          <div style={{ color: "red", fontWeight: "bold" }}>
             *Note: Do not reload during the test
-          </h4>
-          <h4>Start your test now</h4>
+          </div>
+          <div>Click start to begin the test</div>
         </div>
 
         <button
