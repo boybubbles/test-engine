@@ -21,20 +21,20 @@ const CountDown = ({ RandomQuestions, onAnswer }) => {
   };
   useEffect(() => {
     console.log("currentIndex", currentIndex);
-    // if (countdown >= 0) {
-    //   const timerID = setInterval(() => {
-    //     setCountDown((prevState) => prevState - 1);
-    //   }, 1000);
-    //   return () => {
-    //     clearInterval(timerID);
-    //   };
-    // } else {
-    //   if (currentIndex < RandomQuestions.length - 1) {
-    //     onTimesUp();
-    //   } else {
-    //     onOver();
-    //   }
-    // }
+    if (countdown >= 0) {
+      const timerID = setInterval(() => {
+        setCountDown((prevState) => prevState - 1);
+      }, 1000);
+      return () => {
+        clearInterval(timerID);
+      };
+    } else {
+      if (currentIndex < RandomQuestions.length - 1) {
+        onTimesUp();
+      } else {
+        onOver();
+      }
+    }
   }, [countdown]);
   return (
     <div className="countdown-container">
