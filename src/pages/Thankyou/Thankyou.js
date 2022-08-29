@@ -49,9 +49,9 @@ const Thankyou = () => {
         />
       ) : (
         <>
-          <div className="thankyou">Thankyou, {candidate.lastname}</div>
+          <div className="thankyou">Thank you, {candidate.lastname}</div>
           <div className="thankyou">{messages.thankyou}</div>
-          <div>
+          <div className="feedback-content">
             <textarea
               cols="30"
               rows="10"

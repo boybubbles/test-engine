@@ -23,7 +23,7 @@ const initialState = {
       feedback: "",
     },
 
-    stats: {
+    start: {
       time_start: null, // UTC timestamp
       time_end: null, // UTC timestamp
     },
@@ -36,7 +36,6 @@ const userReducer = createSlice({
   initialState,
   reducers: {
     Begintest: (state, action) => {
-      let dateNow = Date.now();
       for (let k in state.result) {
         if (k === "global") {
           for (let i in state.result.global) {
@@ -45,7 +44,7 @@ const userReducer = createSlice({
         } else if (k === "candidate") {
           for (let j in state.result.candidate) {
             if (j === "time_start") {
-              state.result.candidate.time_start = dateNow;
+              state.result.candidate.time_start = Date.now();
             } else if (j === "feedback") {
               state.result.candidate[j] = "";
             } else if (j === "send_feedback") {
@@ -54,8 +53,8 @@ const userReducer = createSlice({
               state.result.candidate[j] = action.payload.testData.candidate[j];
             }
           }
-        } else if (k === "stats") {
-          state.result.stats.time_start = dateNow;
+        } else if (k === "start") {
+          state.result.start.time_start = Date.now();
         }
       }
       state.success = action.payload.success;
@@ -101,7 +100,7 @@ const userReducer = createSlice({
     FeedBack: (state, action) => {
       state.result.candidate.feedback = action.payload;
       state.result.candidate.send_feedback = true;
-      state.result.stats.time_end = Date.now();
+      state.result.start.time_end = Date.now();
       state.status = false;
       state.isDone = true;
     },

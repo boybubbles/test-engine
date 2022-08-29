@@ -71,6 +71,7 @@ const Login = () => {
         database[Math.floor(Math.random() * database.length)].global;
       userValue.current = { ...userValue.current, global: randomTest };
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state?.success]);
   return (
     <div className="container-login">

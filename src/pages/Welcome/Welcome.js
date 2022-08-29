@@ -26,7 +26,7 @@ const Welcome = () => {
   return (
     <div className="container-wellcome">
       <div className="wellcome-logo">
-        <img src={logo} />
+        <img src={logo} alt="..." />
       </div>
       <div className="content">
         <div className="wellcome-title">Important Info</div>
