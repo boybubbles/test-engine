@@ -2,7 +2,7 @@ import "./App.scss";
 import QuizContainer from "./pages/QuizContainer/QuizContainer";
 import Welcome from "./pages/Welcome/Welcome";
 import Thankyou from "./pages/Thankyou/Thankyou";
-import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import { useEffect } from "react";
 

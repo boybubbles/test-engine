@@ -6,7 +6,7 @@ const CountDown = ({ RandomQuestions, onAnswer }) => {
     (rootReducer) => rootReducer.userReducer
   );
   const [countdown, setCountDown] = useState(
-    RandomQuestions[currentIndex].timeout
+    RandomQuestions[currentIndex]?.timeout
   );
   const history = useHistory();
   const onTimesUp = () => {
@@ -35,6 +35,7 @@ const CountDown = ({ RandomQuestions, onAnswer }) => {
         onOver();
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countdown]);
   return (
     <div className="countdown-container">

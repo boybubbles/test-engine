@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import http from "../../database/mockApi";
 import { Result } from "antd";
-import { FeedBack, NewTest } from "../../redux/reducers/userReducer";
+import { FeedBack } from "../../redux/reducers/userReducer";
 import "./Thankyou.scss";
 import logo from "../../image/logo.jpg";
 const Thankyou = () => {
@@ -30,11 +29,10 @@ const Thankyou = () => {
     dispatch(FeedBack(feedback));
   };
 
-  const history = useHistory();
   return (
     <div className="container-thankyou">
       <div className="logo">
-        <img src={logo} />
+        <img src={logo} alt="..." />
       </div>
       {result.candidate.send_feedback ? (
         <Result

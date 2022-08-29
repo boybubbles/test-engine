@@ -4,7 +4,6 @@ import CountDown from "../../component/CountDown";
 import { Answer } from "../../redux/reducers/userReducer";
 import { useSelector } from "react-redux";
 import "./QuestionForm.scss";
-import { useHistory } from "react-router-dom";
 
 const QuestionForm = () => {
   const { testContent } = useSelector((rootReducer) => rootReducer.userReducer);
@@ -12,7 +11,6 @@ const QuestionForm = () => {
   const { currentIndex } = useSelector(
     (rootReducer) => rootReducer.userReducer
   );
-  const history = useHistory();
   const dispatch = useDispatch();
   const instance = useRef();
   const updateHistoryAndValue = ({ target }) => {
@@ -34,14 +32,14 @@ const QuestionForm = () => {
   };
   useEffect(() => {
     instance.current = {
-      id: testContent.questions[currentIndex].id,
-      timeout: testContent.questions[currentIndex].timeout, // timeout is seconds
-      question: testContent.questions[currentIndex].question,
-      multichoice: testContent.questions[currentIndex].multichoice,
-      topic: testContent.questions[currentIndex].topic,
-      answers: testContent.questions[currentIndex].answers,
+      id: testContent.questions[currentIndex]?.id,
+      timeout: testContent.questions[currentIndex]?.timeout, // timeout is seconds
+      question: testContent.questions[currentIndex]?.question,
+      multichoice: testContent.questions[currentIndex]?.multichoice,
+      topic: testContent.questions[currentIndex]?.topic,
+      answers: testContent.questions[currentIndex]?.answers,
       history: [],
-      results: testContent.questions[currentIndex].answers.map(
+      results: testContent.questions[currentIndex]?.answers.map(
         (item, index) => ({
           answer: item,
           position: index,
@@ -56,10 +54,10 @@ const QuestionForm = () => {
     <div className="questionForm-container">
       <CountDown RandomQuestions={testContent.questions} onAnswer={onAnswer} />
       <div className="question">{`Question ${currentIndex + 1}: ${
-        testContent?.questions[currentIndex].question
+        testContent?.questions[currentIndex]?.question
       } `}</div>
       <div className="answer-container">
-        {testContent.questions[currentIndex].answers.map((item, index) => (
+        {testContent.questions[currentIndex]?.answers.map((item, index) => (
           <div key={index}>
             <input
               className="answer-input"
